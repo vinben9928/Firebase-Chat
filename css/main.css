@@ -1,0 +1,43 @@
+*
+{
+    font-family: "Century Gothic";
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#chatName, #chatMessage
+{
+    width: 100%;
+    font-size: 14pt;
+}
+
+#chatMessage
+{
+    height: 100px;
+}
+
+.chat
+{
+    width: 75%;
+    margin: auto;
+}
+
+.chatMessages
+{
+    height: calc(100vh - 90px - 100px - 23px);
+    border: 1px dashed #000000;
+}
+
+.chatForm, input[type=submit]
+{
+    min-width: 75px;
+    min-height: 23px;
+}
+
+header, footer
+{
+    height: 30px;
+    text-align: center;
+    background-color: #000000;
+    color: #FFFFFF;
+}

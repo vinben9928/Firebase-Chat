@@ -26,6 +26,7 @@
 {
     height: calc(100vh - 90px - 100px - 23px);
     border: 1px dashed #000000;
+    overflow-y: scroll;
 }
 
 .chatForm, input[type=submit]

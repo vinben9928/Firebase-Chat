@@ -13,12 +13,24 @@
     <body>
         <header>
             <h2>Firebase Chat</h2>
+            <a href="javascript:void(0)" id="loginLink" onclick="login()">Login</a>
+            <a href="javascript:void(0)" id="logoutLink" onclick="logout()">Logout</a>
         </header>
         <main>
-            <div id="chatMessages" class="chat chatMessages">
-
+            <div id="loginNotice" class="chat">
+                <h1 style="display: table-cell; vertical-align: middle;">You must be logged in to view this page!</h1>
             </div>
-            <div class="chat chatForm">
+
+            <div id="loginBlock" class="chat">
+                <form action="" method="POST" id="loginForm">
+                    <input type="email" id="email" placeholder="E-mail"/>
+                    <input type="password" id="password" placeholder="Password"/>
+                    <input type="submit" value="Login"/>
+                </form>
+            </div>
+
+            <div id="chatMessages" class="chat chatMessages"></div>
+            <div id="chatBlock" class="chat chatForm">
                 <form action="" method="post" id="chatForm">
                     <p><input id="chatName" type="text" placeholder="Your name" required/></p>
                     <p><textarea id="chatMessage" placeholder="Message" required></textarea></p>

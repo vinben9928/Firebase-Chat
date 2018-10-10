@@ -27,9 +27,20 @@
     height: calc(100vh - 90px - 100px - 23px);
     border: 1px dashed #000000;
     overflow-y: scroll;
+    word-wrap: break-word;
 }
 
-.chatForm, input[type=submit]
+#chatMessages
+{
+    display: none;
+}
+
+#chatBlock
+{
+    display: none;
+}
+
+input[type=submit]
 {
     min-width: 75px;
     min-height: 23px;
@@ -41,4 +52,44 @@ header, footer
     text-align: center;
     background-color: #000000;
     color: #FFFFFF;
+    position: relative;
+}
+
+#loginLink, #logoutLink
+{
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FFFFFF;
+}
+
+#logoutLink
+{
+    display: none;
+}
+
+#loginNotice
+{
+    display: table;
+    text-align: center;
+    height: calc(100vh - 60px);
+}
+
+#loginBlock
+{
+    display: none;
+}
+
+#loginForm
+{
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+#loginForm input[type=email], #loginForm input[type=password]
+{
+    width: 100%;
+    padding: 1%;
 }

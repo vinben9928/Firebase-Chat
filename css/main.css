@@ -40,6 +40,29 @@
     display: none;
 }
 
+.chatMessage
+{
+    position: relative;
+    padding: 16px;
+    border-bottom: 1px dashed #CCCCCC;
+}
+
+.deleteButton
+{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 16px;
+    height: 16px;
+}
+
+.editButton
+{
+    position: absolute;
+    top: 2px;
+    right: calc(2px + 16px + 4px);
+}
+
 input[type=submit]
 {
     min-width: 75px;

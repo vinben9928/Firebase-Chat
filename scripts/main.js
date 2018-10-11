@@ -16,6 +16,8 @@ var messages = firebase.database().ref("chat");
 
 firebase.auth().onAuthStateChanged(function(user) {
     if(user) {
+        document.getElementById("uid").value = user.uid;
+
         document.getElementById("logoutLink").style.display = "block";
         document.getElementById("loginLink").style.display = "none";
         document.getElementById("loginNotice").style.display = "none";
@@ -43,11 +45,33 @@ firebase.auth().onAuthStateChanged(function(user) {
         
                 messageElement.innerText = message.message;
         
-                msgElement.style.cssText = "padding: 16px; border-bottom: 1px dashed #CCCCCC;";
+                msgElement.className = "chatMessage";
         
                 msgElement.appendChild(headerElement);
                 msgElement.appendChild(messageElement);
-                
+
+                if(message.uid === undefined || message.uid === null || message.uid === user.uid) {
+                    //Edit button.
+                    var editButton = document.createElement("button");
+
+                    editButton.id = key;
+                    editButton.innerText = "edit";
+                    editButton.className = "editButton";
+                    editButton.addEventListener("click", editMessage);
+
+                    msgElement.appendChild(editButton);
+                    
+                    //Delete button.
+                    var deleteButton = document.createElement("button");
+
+                    deleteButton.id = key;
+                    deleteButton.innerText = "x";
+                    deleteButton.className = "deleteButton";
+                    deleteButton.addEventListener("click", deleteMessage);
+
+                    msgElement.appendChild(deleteButton);
+                }
+
                 chatMessages.appendChild(msgElement);
             }
         
@@ -77,6 +101,7 @@ function documentLoaded() {
 function onSubmit(event) {
     event.preventDefault();
     
+    var uid = document.getElementById("uid").value;
     var name = document.getElementById("chatName").value;
     var message = document.getElementById("chatMessage").value;
     var timestamp = Date.now();
@@ -86,7 +111,8 @@ function onSubmit(event) {
     database.ref("chat").push({
         name: name,
         message: message,
-        timestamp: timestamp
+        timestamp: timestamp,
+        uid: uid
     });
 
     document.getElementById("chatMessage").value = "";
@@ -119,4 +145,12 @@ function logout() {
         .catch(function(error) {
             alert("Couldn't sign out:\n" + error.message + " (" + error.code + ")");
         });
+}
+
+function deleteMessage() {
+    firebase.database().ref("chat").child(this.id).remove();
+}
+
+function editMessage() {
+    
 }

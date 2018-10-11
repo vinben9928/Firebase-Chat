@@ -80,7 +80,7 @@ header, footer
     position: relative;
 }
 
-#loginLink, #logoutLink
+#loginLink, #logoutLink, #googleLoginLink
 {
     position: absolute;
     right: 6px;
@@ -92,6 +92,11 @@ header, footer
 #logoutLink
 {
     display: none;
+}
+
+#googleLoginLink
+{
+    right: calc(6px + 64px);
 }
 
 #loginNotice

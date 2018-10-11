@@ -28,7 +28,8 @@ var messages = firebase.database().ref("chat");
 firebase.auth().onAuthStateChanged(function(user) {
     if(user) {
         document.getElementById("uid").value = user.uid;
-
+        
+        document.getElementById("googleLoginLink").style.display = "none";
         document.getElementById("logoutLink").style.display = "block";
         document.getElementById("loginLink").style.display = "none";
         document.getElementById("loginNotice").style.display = "none";
@@ -92,6 +93,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         });
     }
     else {
+        document.getElementById("googleLoginLink").style.display = "block";
         document.getElementById("logoutLink").style.display = "none";
         document.getElementById("loginLink").style.display = "block";
         document.getElementById("loginNotice").style.display = "table";
@@ -143,9 +145,14 @@ function onLoginSubmit(event) {
 }
 
 function login() {
+    document.getElementById("googleLoginLink").style.display = "none";
     document.getElementById("loginLink").style.display = "none";
     document.getElementById("loginNotice").style.display = "none";
     document.getElementById("loginBlock").style.display = "table";
+}
+
+function loginWithGoogle() {
+    firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider());
 }
 
 function logout() {

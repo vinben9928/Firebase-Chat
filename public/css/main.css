@@ -52,15 +52,17 @@
     position: absolute;
     top: 2px;
     right: 2px;
-    width: 16px;
-    height: 16px;
+    min-width: 23px;
+    min-height: 23px;
 }
 
 .editButton
 {
     position: absolute;
     top: 2px;
-    right: calc(2px + 16px + 4px);
+    right: calc(2px + 23px + 4px);
+    min-width: 23px;
+    min-height: 23px;
 }
 
 input[type=submit]
@@ -102,13 +104,15 @@ header, footer
 #loginBlock
 {
     display: none;
+    height: calc(100vh - 60px);
+    width: auto !important;
 }
 
 #loginForm
 {
+    display: table-cell;
     text-align: center;
-    width: 50%;
-    margin: auto;
+    vertical-align: middle;
 }
 
 #loginForm input[type=email], #loginForm input[type=password]

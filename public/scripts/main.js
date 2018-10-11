@@ -11,6 +11,17 @@ function getElementsByClassName(className) {
     return returnArray;
 }
 
+function formatDate(date) {
+    if(Object.prototype.toString.call(date) !== "[object Date]") { throw "Input must be a valid Date!"; }
+    return date.getFullYear() + "-" + formatNumber(date.getMonth() + 1) + "-" + formatNumber(date.getDate()) + " " + 
+            formatNumber(date.getHours()) + ":" + formatNumber(date.getMinutes()) + ":" + formatNumber(date.getSeconds());
+}
+
+function formatNumber(num) {
+    if(typeof num !== "number") { throw "Input must be a valid number!"; }
+    return (num >= 0 && num <= 9 ? "0" + num.toString() : num.toString());
+}
+
 //Firebase events.
 var messages = firebase.database().ref("chat");
 
@@ -40,7 +51,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                 var headerElement = document.createElement("p");
                 var messageElement = document.createElement("p");
         
-                headerElement.innerText = new Date(message.timestamp).toString() + " - " + message.name;
+                headerElement.innerText = "[" + formatDate(new Date(message.timestamp)) + "] " + message.name;
                 headerElement.style.cssText = "font-weight: bold;";
         
                 messageElement.innerText = message.message;
@@ -134,7 +145,7 @@ function onLoginSubmit(event) {
 function login() {
     document.getElementById("loginLink").style.display = "none";
     document.getElementById("loginNotice").style.display = "none";
-    document.getElementById("loginBlock").style.display = "block";
+    document.getElementById("loginBlock").style.display = "table";
 }
 
 function logout() {
